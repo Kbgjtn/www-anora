@@ -38,7 +38,7 @@ const variants: Record<Variant, string> = {
 
 const base = cn(
   // base
-  "disabled:opacity-65 disabled:cursor-not-allowed",
+  "disabled:opacity-65",
   "active:opacity-80",
 );
 
