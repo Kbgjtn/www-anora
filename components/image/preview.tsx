@@ -46,7 +46,7 @@ const ImagePreview: FC<ImagePreviewProps> = ({
   return (
     <div className={cn("flex flex-col items-center gap-2", className)}>
       <p className="self-start font-semibold">Select Ratio Image</p>
-      <div className="grid w-full grid-cols-[repeat(auto-fill,minmax(75px,1fr))] gap-4 self-start">
+      <div className="grid w-full grid-cols-[repeat(auto-fill,minmax(75px,1fr))] gap-2 self-start">
         {supportedRatio && supportedRatio.length > 0
           ? supportedRatio?.map((r, i) => (
               <Toggle
@@ -55,10 +55,9 @@ const ImagePreview: FC<ImagePreviewProps> = ({
                 onClick={() => handleRatioToggle(ratios[r])}
                 size="sm"
                 toggleAccent="blue"
-                className="px-2"
                 selected={ratio === ratios[r]}
               >
-                <Icon name="circle" size={10} className="inline-block" />
+                <Icon name="circle" size={10} />
                 {r}
               </Toggle>
             ))

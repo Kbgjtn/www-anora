@@ -11,8 +11,8 @@ interface ToggleProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const base = cn(
-  "flex gap-2 items-center",
-  "px-4",
+  "inline-flex gap-2 items-center justify-center",
+  "sm:px-2 md:px-4",
   "active:opacity-100",
 
   "data-[toggle=off]:opacity-75",
@@ -20,7 +20,7 @@ const base = cn(
 
   "data-[toggle=off]:*:[svg]:fill-current/15",
   "data-[toggle=off]:*:[svg]:stroke-current/0",
-  "data-[toggle=on]:*:[svg]:stroke-none",
+  // "data-[toggle=on]:*:[svg]:stroke-none",
 );
 
 export function Toggle({
@@ -59,27 +59,33 @@ let accent: Record<string, string> = {
     "data-[toggle=on]:dark:border-current/80",
   ),
   blue: cn(
-    "data-[toggle=on]:*:[svg]:fill-blue-400",
+    "data-[toggle=on]:*:[svg]:fill-blue-500",
+    "data-[toggle=on]:border-blue-500",
     "data-[toggle=on]:dark:border-blue-400",
   ),
   red: cn(
-    "data-[toggle=on]:*:[svg]:fill-red-400",
+    "data-[toggle=on]:*:[svg]:fill-red-500",
+    "data-[toggle=on]:border-red-500",
     "data-[toggle=on]:dark:border-red-400",
   ),
   lime: cn(
-    "data-[toggle=on]:*:[svg]:fill-lime-400",
+    "data-[toggle=on]:*:[svg]:fill-lime-500",
+    "data-[toggle=on]:border-lime-500",
     "data-[toggle=on]:dark:border-lime-400",
   ),
   amber: cn(
-    "data-[toggle=on]:*:[svg]:fill-amber-400",
+    "data-[toggle=on]:*:[svg]:fill-amber-500",
+    "data-[toggle=on]:border-amber-500",
     "data-[toggle=on]:dark:border-amber-400",
   ),
   pink: cn(
-    "data-[toggle=on]:*:[svg]:fill-pink-400",
+    "data-[toggle=on]:*:[svg]:fill-pink-500",
+    "data-[toggle=on]:border-pink-500",
     "data-[toggle=on]:dark:border-pink-400",
   ),
   purple: cn(
-    "data-[toggle=on]:*:[svg]:fill-purple-400",
+    "data-[toggle=on]:*:[svg]:fill-purple-500",
+    "data-[toggle=on]:border-purple-500",
     "data-[toggle=on]:dark:border-purple-400",
   ),
 };
