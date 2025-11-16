@@ -1,7 +1,7 @@
 "use client";
 
-import { FC, InputHTMLAttributes, useState } from "react";
 import { cn, Variant } from "./shared";
+import { FC, InputHTMLAttributes, useState } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   variant?: Variant;
@@ -57,11 +57,9 @@ const Input: FC<InputProps> = ({ className, children, ...props }) => {
           id={label}
           className={style}
           onChangeCapture={(e) => {
-            console.log({
-              event: "onChangeCapture",
-              validity: e.currentTarget.validity,
-              validationMessage: e.currentTarget.validationMessage,
-            });
+            if (!e.currentTarget) {
+              return;
+            }
 
             if (!e.currentTarget.validity.valid) {
               setValidationMessage(
@@ -76,14 +74,6 @@ const Input: FC<InputProps> = ({ className, children, ...props }) => {
         >
           {children}
         </input>
-
-        {/* <p
-            className={cn(
-              "absolute -right-4 -top-0.5",
-              "after:content-['!'] after:text-red-400 after:text-sm after:align-top after:font-mono",
-            )}
-            title={"lorem ipsum"}
-          /> */}
 
         <div className="inline-flex">
           <label htmlFor={label}>
