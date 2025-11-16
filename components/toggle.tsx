@@ -41,6 +41,7 @@ export function Toggle({
       variant={variant || "outline"}
       data-toggle={selected ? "on" : "off"}
       title={title ? title : `Toggle ${value}: ${selected ? "on" : "off"}`}
+      type="button"
       className={style}
       {...props}
     >
