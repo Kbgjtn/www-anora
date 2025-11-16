@@ -1,7 +1,7 @@
 "use client";
 
-import { HTMLAttributes, ReactNode, useEffect, useRef, useState } from "react";
 import { cn } from "./shared";
+import { HTMLAttributes, ReactNode, useEffect, useRef, useState } from "react";
 
 interface AspectRatioProps extends HTMLAttributes<HTMLElement> {
   ratio: number;
