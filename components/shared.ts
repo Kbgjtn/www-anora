@@ -13,3 +13,4 @@ export const cn = (...cns: ClassNameValue[]): string => {
 };
 
 export type Ratio = "original" | "1:1" | "4:5" | "16:9";
+export type SupportedRatioType = "1:1" | "2:1" | "3:2" | "4:3" | "16:9";
