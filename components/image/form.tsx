@@ -151,12 +151,12 @@ const UploadForm: FC<UploadFormProps> = () => {
         />
 
         <input
-          hidden
           multiple
           accept="image/*"
           type="file"
           ref={fileInputRef}
           onChange={handleInputFileChange}
+          className="hidden"
         />
 
         <div className="px-2">
