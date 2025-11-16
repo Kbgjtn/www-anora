@@ -157,6 +157,7 @@ const UploadForm: FC<UploadFormProps> = () => {
           ref={fileInputRef}
           onChange={handleInputFileChange}
           className="hidden"
+          tabIndex={-1}
         />
 
         <div className="px-2">
@@ -192,7 +193,7 @@ const UploadForm: FC<UploadFormProps> = () => {
                 type="reset"
                 size="sm"
                 variant="secondary"
-                className="max-sm:hidden"
+                className="hidden sm:visible"
               >
                 Cancel
               </Button>

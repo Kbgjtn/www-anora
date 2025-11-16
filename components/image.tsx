@@ -27,7 +27,7 @@ const Image: FC<ImageProps> = ({ className, ...props }) => {
         {...props}
       />
 
-      <Empty hidden={imgState !== 2}>
+      <Empty show={imgState !== 2}>
         <ErrorImage />
         <ErrorPrompt
           header="404 not found"

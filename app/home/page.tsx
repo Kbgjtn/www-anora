@@ -15,7 +15,6 @@ export default function Home() {
   const posters = poster.get(page, DEFAULT_PAGE_SIZE);
 
   return (
-    <>
       <div className="px-4 mt-12 space-y-4 w-full md:max-w-prose md:mx-auto overflow-y-scroll">
         <div className="rounded border border-dashed border-transparent p-4 mt-4">
           <UploadForm />
@@ -34,8 +33,13 @@ export default function Home() {
                 <PosterCard poster={poster} />
               </div>
             ))}
+        </div>
+      </div>
+  );
+}
 
-          {/* {new Array(10).fill(0, 0, 10).map((_, v) => {
+{
+  /* {new Array(10).fill(0, 0, 10).map((_, v) => {
           return (
             <div key={v}>
               <div className="grid grid-cols-3 gap-4 mb-4">
@@ -53,9 +57,5 @@ export default function Home() {
               <div className="flex items-center justify-center h-48 rounded bg-neutral-900 mb-4 border border-dashed border-neutral-800"></div>
             </div>
           );
-        })} */}
-        </div>
-      </div>
-    </>
-  );
+        })} */
 }
