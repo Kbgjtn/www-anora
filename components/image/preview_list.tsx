@@ -4,7 +4,7 @@ import { cn } from "../shared";
 import { useFileStore } from "../upload/store";
 
 import Image from "../image";
-import PreviewItem from "./preview_item_v2";
+import PreviewItem from "./preview_item";
 
 export default function PreviewList() {
   const files = useFileStore((s) => s.files);
