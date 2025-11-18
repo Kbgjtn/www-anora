@@ -50,7 +50,7 @@ export function Toggle({
   );
 }
 
-let accent: Record<string, string> = {
+const accent: Record<string, string> = {
   neutral: cn(
     "data-[toggle=on]:*:[svg]:fill-neutral-500",
     "data-[toggle=on]:dark:border-neutral-900",

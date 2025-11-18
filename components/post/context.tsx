@@ -1,12 +1,12 @@
 "use client";
 
-import { Object } from "../image/context";
 import { createContext, useContext, useState } from "react";
+import { ObjectState } from "../image/objectTypes";
 
 export type Poster = {
   id: string;
   content?: string;
-  objects?: Object[];
+  objects?: ObjectState[];
   createdAt: number;
   analytics: {
     like: number;

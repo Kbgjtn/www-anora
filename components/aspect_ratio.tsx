@@ -32,7 +32,7 @@ const AspectRatio: React.FC<AspectRatioProps> = ({
   }, [maxHeight]);
 
   // Calculate maximum dimensions while maintaining the aspect ratio
-  let calculatedMaxHeight = maxHeight;
+  const calculatedMaxHeight = maxHeight;
   let calculatedMaxWidth;
 
   if (maxHeight) {
