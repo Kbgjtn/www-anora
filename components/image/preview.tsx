@@ -1,7 +1,7 @@
 "use client";
 
 import { Toggle } from "../toggle";
-import { useObjectContext } from "./context";
+import { useObjectContext, useObjectRatio } from "./context";
 import { cn, SupportedRatioType } from "../shared";
 import { FC, HTMLAttributes, ReactNode, useState } from "react";
 
@@ -38,54 +38,58 @@ const ImagePreview: FC<ImagePreviewProps> = ({
   imageId,
   ...props
 }) => {
-  const [ratio, setRatio] = useState<number>(ratios["1:1"]);
-  const { updateRatio, getRatio } = useObjectContext();
+  const [localRatio, setLocalRatio] = useState(ratios["1:1"]);
+
+  const { setRatio } = useObjectContext();
+  const controlled = imageId !== undefined;
+  const ctxRatio = useObjectRatio(imageId ?? 0);
+  const effectiveRatio = controlled ? ctxRatio : localRatio;
 
   const handleRatioToggle = (value: number) => {
-    setRatio(value);
-
-    if (imageId !== undefined) {
-      updateRatio(imageId, value);
+    if (controlled) {
+      if (value === ctxRatio) return;
+      setRatio(imageId!, value);
+    } else {
+      setLocalRatio(value);
     }
   };
+  console.log("ImagePreview re-render", imageId);
 
   return (
     <div className={cn("flex flex-col items-center gap-2", className)}>
-      <p className="self-start font-semibold text-xs">Ratio</p>
-      <div className="grid w-full grid-cols-[repeat(auto-fill,minmax(48px,1fr))] gap-2 self-start">
-        {supportedRatio && supportedRatio.length > 0
-          ? supportedRatio?.map((r, i) => (
-              <Toggle
-                key={i}
-                value={ratios[r]}
-                onClick={() => handleRatioToggle(ratios[r])}
-                size="sm"
-                toggleAccent="blue"
-                className="p-0"
-                selected={
-                  imageId !== undefined
-                    ? getRatio(imageId) === ratios[r]
-                    : ratio === ratios[r]
-                }
-              >
-                {r}
-              </Toggle>
-            ))
-          : null}
-      </div>
+      {supportedRatio?.length > 0 && (
+        <>
+          <p className="self-start font-semibold text-xs">Ratio</p>
+          <div className="grid w-full grid-cols-[repeat(auto-fill,minmax(48px,1fr))] gap-2 self-start">
+            {supportedRatio?.map((r) => {
+              const val = ratios[r];
+              return (
+                <Toggle
+                  key={r}
+                  size="sm"
+                  value={val}
+                  className="p-0"
+                  toggleAccent="blue"
+                  onClick={() => handleRatioToggle(val)}
+                  selected={effectiveRatio === val}
+                >
+                  {r}
+                </Toggle>
+              );
+            })}
+          </div>
+        </>
+      )}
 
       <div
         className={cn(
           "w-full max-h-[560px] min-h-[560px]",
           "flex items-center justify-center",
-          "overflow-hidden rounded-md",
+          "overflow-hidden rounded",
         )}
         {...props}
       >
-        <AspectRatio
-          maxHeight={maxHeight}
-          ratio={imageId !== undefined ? getRatio(imageId) : ratio}
-        >
+        <AspectRatio maxHeight={maxHeight} ratio={effectiveRatio || localRatio}>
           {children}
         </AspectRatio>
       </div>
