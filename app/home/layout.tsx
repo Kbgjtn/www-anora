@@ -1,8 +1,5 @@
 import { ReactNode } from "react";
 import { cn } from "@/components/shared";
-import { ObjectProvider } from "@/components/image/context";
-
-import PosterProvider from "@/components/post/context";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
