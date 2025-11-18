@@ -38,6 +38,13 @@ const variants: Record<Variant, string> = {
     "dark:[&:not(:disabled):hover]:bg-white/10",
     "dark:[&:not(:disabled):hover]:bg-black/10",
   ),
+
+  ghost: cn(
+    "dark:[&:not(:disabled):hover]:bg-neutral-900/70",
+    "dark:[&:not(:disabled):hover]:ring",
+    "dark:[&:not(:disabled):hover]:ring-white/10",
+    "dark:[&:not(:disabled):hover]:ring-black/10",
+  ),
 };
 
 const base = cn("disabled:opacity-50", "active:opacity-80");
