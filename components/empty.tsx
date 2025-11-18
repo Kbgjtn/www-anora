@@ -1,9 +1,7 @@
 import { cn } from "./shared";
 import { FC, HTMLAttributes } from "react";
 
-interface EmptyProps extends HTMLAttributes<HTMLElement> {
-  show: boolean;
-}
+interface EmptyProps extends HTMLAttributes<HTMLElement> {}
 
 interface ErrorProps extends HTMLAttributes<HTMLElement> {
   title?: string;
@@ -45,11 +43,11 @@ export const ErrorPrompt: FC<ErrorProps> = ({
   );
 };
 
-const Empty: FC<EmptyProps> = ({ show, className, children, ...props }) => {
+const Empty: FC<EmptyProps> = ({ className, children, ...props }) => {
   return (
     <div
       className={cn(
-        show ? "hidden" : "visible",
+        "absolute inset-0",
         "h-full w-full",
         "flex items-center gap-2",
         "transition-all duration-[2s,4s]",
