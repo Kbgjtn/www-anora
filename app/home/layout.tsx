@@ -7,7 +7,7 @@ import PosterProvider from "@/components/post/context";
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen">
-      {/* Navigation */}
+      {/* navigation */}
       <div
         className={cn(
           "flex items-center justify-stretch gap-2",
@@ -18,10 +18,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         )}
       >
         <div className="flex gap-4 w-max">
-          <a href="/home" title="coocobolo">
+          <a href="/" aria-label="kbgjtn profile" title="coocobolo">
             <img
               src="/icon.svg"
-              alt=""
+              alt="logo"
               className="w-6 h-6 dark:grayscale-100 grayscale-30"
             />
           </a>
@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </div>
       </div>
 
-      {/* SideBar */}
+      {/* sidebar */}
       <aside
         className={cn(
           "h-svh w-16 pr-4 fixed top-0 left-0",
@@ -43,10 +43,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <div className="p-4">SB</div>
       </aside>
 
-      {/* Main */}
-      <PosterProvider>
-        <ObjectProvider>{children}</ObjectProvider>
-      </PosterProvider>
+      {/* main */}
+      <main className="px-4 mt-12 space-y-4 w-full md:max-w-prose md:mx-auto overflow-y-scroll">
+        {children}
+      </main>
     </div>
   );
 }
