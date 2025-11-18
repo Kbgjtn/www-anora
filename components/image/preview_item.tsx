@@ -1,17 +1,16 @@
 "use client";
 
+import { Icon } from "../icons";
+import { Button } from "../button";
 import { useFileStore } from "../upload/store";
 import { cn, SupportedRatioType } from "../shared";
-
-import AspectRatio from "../aspect_ratio";
-import Image from "../image";
-import { Icon } from "../icons";
 import { DropdownMenu } from "../dropdown/dropDownMenu";
 import { DropdownMenuTrigger } from "../dropdown/dropdownMenuTrigger";
 import { DropdownMenuContent } from "../dropdown/dropdownMenuContent";
 import { DropdownMenuItem } from "../dropdown/dropdownMenuItem";
-import { DropdownMenuLabel } from "../dropdown/dropdownMenuLabel";
-import { Button } from "../button";
+
+import AspectRatio from "../aspect_ratio";
+import Image from "../image";
 
 const ratios: Record<string, number> = {
   auto: 1,

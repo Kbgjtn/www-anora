@@ -1,8 +1,8 @@
 "use client";
 
 import { createContext, useContext, useMemo, useReducer } from "react";
-import { ObjectContextAttr } from "./object.types";
-import { objectReducer } from "./object.reducer";
+import { ObjectContextAttr } from "./objectTypes";
+import { objectReducer } from "./objectReducer";
 
 const ObjectContext = createContext({} as ObjectContextAttr);
 
