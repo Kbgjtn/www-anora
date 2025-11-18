@@ -6,6 +6,8 @@ import { ChangeEvent, useState } from "react";
 import ImagePreview from "@/components/image/preview";
 import Image from "@/components/image";
 import Input from "@/components/input";
+import { Button } from "@/components/button";
+import { Icon } from "@/components/icons";
 
 const DEFAULT_IMAGE_URL = "/404";
 
@@ -20,18 +22,24 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen max-md:flex-col mx-auto gap-4">
-      <aside className="max-w-md max-md:min-w-full items-center">
+      <aside className="max-w-md max-md:min-w-full items-center flex  flex-row md:flex-col gap-4 p-2">
         <a href="/" title="coocobolo">
           <img
             src="/icon.svg"
             alt=""
             width={12}
             height={12}
-            className="w-12 max-md:w-8 max-md:mx-auto mt-4 p-2 max-md:p-1 dark:grayscale-100 grayscale-30"
+            className="w-5 max-md:w-8 max-md:mx-auto max-md:p-1 dark:grayscale-100 grayscale-30"
           />
         </a>
-        <p className="w-12"></p>
+
+        <a href="/home" title="home" className="w-max max-md:hidden">
+          <Button variant="ghost" size="sm">
+            <Icon name="home" className="" />
+          </Button>
+        </a>
       </aside>
+
       <main className="h-full flex flex-col gap-4 shrink-0 w-4/5 max-md:pl-2">
         <div className="h-2" />
         <ImagePreview className="w-full">
@@ -40,7 +48,9 @@ export default function Home() {
 
         <code className="opacity-50 select-all text-[12px] font-mono w-full text-wrap">
           <span className="block select-none">Sample:</span>
-          https://images.pexels.com/photos/34639114/pexels-photo-34639114.jpeg
+          {
+            "https://images.pexels.com/photos/34639114/pexels-photo-34639114.jpeg"
+          }
         </code>
         <div className="w-4/5 md:w-1/4">
           <Input
@@ -48,7 +58,6 @@ export default function Home() {
             placeholder="Enter an image url"
             type="url"
             autoFocus
-            // aria-label="image URL"
             autoComplete="url"
             autoCorrect="on"
             maxLength={256}
