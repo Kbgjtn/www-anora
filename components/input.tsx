@@ -1,7 +1,7 @@
 "use client";
 
 import { cn, Variant } from "./shared";
-import { FC, InputHTMLAttributes, useState } from "react";
+import { FC, InputHTMLAttributes, useId, useState } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   variant?: Variant;
@@ -26,71 +26,65 @@ const base = cn(
   "dark:placeholder:text-neutral-500",
 );
 
-const Input: FC<InputProps> = ({ className, children, ...props }) => {
+const Input: FC<InputProps> = ({
+  title,
+  id,
+  className,
+  children,
+  ...props
+}) => {
   const style = cn(base, className);
-  const title = props["aria-label"];
-  const label = title?.replaceAll(" ", "_");
-  const required = props.required;
+  const reactId = useId();
+  const inputId = id ?? reactId;
 
   const [validationMessage, setValidationMessage] = useState<string>("");
 
   return (
-    <>
-      <div>
-        {label && (
-          <label
-            className={cn(
-              "inline-block capitalize mb-1.5 select-none",
-              "dark:text-neutral-300",
-              "dark:active:opacity-85",
-              required
-                ? "after:content-['*'] after:text-red-400 after:text-xs after:align-top after:font-mono"
-                : "",
-            )}
-            htmlFor={label}
-          >
-            {title}
-          </label>
-        )}
-
-        <input
-          id={label}
-          className={style}
-          onChangeCapture={(e) => {
-            if (!e.currentTarget) {
-              return;
-            }
-
-            if (!e.currentTarget.validity.valid) {
-              setValidationMessage(
-                e.currentTarget.validationMessage.toString(),
-              );
-              return;
-            }
-
-            setValidationMessage("");
-          }}
-          {...props}
+    <div>
+      {title && (
+        <label
+          className={cn(
+            "inline-block capitalize mb-1.5 select-none",
+            "dark:text-neutral-300",
+            "dark:active:opacity-85",
+            props.required
+              ? "after:content-['*'] after:text-red-400 after:text-xs after:align-top after:font-mono"
+              : "",
+          )}
+          htmlFor={inputId}
         >
-          {children}
-        </input>
+          {title}
+        </label>
+      )}
 
-        <div className="inline-flex">
-          <label htmlFor={label}>
-            <p
-              className={cn(
-                "inline-block text-wrap align-top pt-0.5",
-                "text-[8px] text-red-400",
-                "wrap-break-word",
-                validationMessage ? "visible" : "hidden",
-              )}
-            >
-              {validationMessage}
-            </p>
-          </label>
-        </div>
+      <input
+        id={inputId}
+        className={style}
+        aria-describedby={`${inputId}-error`}
+        onChangeCapture={(e) => {
+          const el = e.currentTarget;
+          if (!el.validity.valid) {
+            setValidationMessage(el.validationMessage.toString());
+            return;
+          }
+          setValidationMessage("");
+        }}
+        {...props}
+      />
+
+      <div className="inline-flex flex-col">
+        <p
+          id={`${inputId}-error`}
+          className={cn(
+            "text-[8px] text-red-400 wrap-break-word pt-0.5 transition-opacity",
+            validationMessage ? "opacity-100" : "opacity-0",
+          )}
+          aria-live="polite"
+        >
+          {validationMessage || " "}
+        </p>
       </div>
-    </>
+    </div>
   );
 };
 
