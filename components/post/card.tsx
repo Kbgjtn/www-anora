@@ -58,7 +58,7 @@ const PosterCard: FC<PosterCardProps> = ({ poster, ...props }) => {
               key={i}
               className="snap-start snap-normal scroll-ml-0 inline-flex max-w-prose min-w-full items-center"
             >
-              <AspectRatio ratio={object.meta?.ratio || 16 / 9}>
+{/*               <AspectRatio ratio={object.objects.at(i)?.meta?.ratio ?? 16 / 9}>
                 <Image
                   src={URL.createObjectURL(object.f)}
                   className={cn(
@@ -67,7 +67,7 @@ const PosterCard: FC<PosterCardProps> = ({ poster, ...props }) => {
                   )}
                   alt={object.f.name}
                 />
-              </AspectRatio>
+              </AspectRatio> */}
             </div>
           ))}
         </div>
