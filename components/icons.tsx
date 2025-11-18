@@ -4,8 +4,10 @@ export type IconName =
   | "settings"
   | "sensors"
   | "search"
+  | "restart_alt"
   | "report"
   | "remove"
+  | "pan_zoom"
   | "menu"
   | "link"
   | "light_bulb"
@@ -53,11 +55,11 @@ export const Icon: React.FC<IconProps> = ({
         width={size}
         height={size}
         fill={color}
-        viewBox="0 0 24 24"
+        viewBox="0 -960 960 960"
         className={className}
         {...props}
       >
-        <path d="M3 9.5L12 3l9 6.5V21H3V9.5z" />
+        <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
       </svg>
     ),
     search: (props) => (
@@ -407,6 +409,36 @@ export const Icon: React.FC<IconProps> = ({
         {...props}
       >
         <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+      </svg>
+    ),
+
+    pan_zoom: (props) => (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        fill={color}
+        stroke="currentColor"
+        viewBox="0 -960 960 960"
+        className={className}
+        {...props}
+      >
+        <path d="M120-120v-240h80v104l124-124 56 56-124 124h104v80H120Zm516-460-56-56 124-124H600v-80h240v240h-80v-104L636-580Z" />
+      </svg>
+    ),
+
+    restart_alt: (props) => (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        fill={color}
+        stroke="currentColor"
+        viewBox="0 -960 960 960"
+        className={className}
+        {...props}
+      >
+        <path d="M440-122q-121-15-200.5-105.5T160-440q0-66 26-126.5T260-672l57 57q-38 34-57.5 79T240-440q0 88 56 155.5T440-202v80Zm80 0v-80q87-16 143.5-83T720-440q0-100-70-170t-170-70h-3l44 44-56 56-140-140 140-140 56 56-44 44h3q134 0 227 93t93 227q0 121-79.5 211.5T520-122Z" />
       </svg>
     ),
   };
