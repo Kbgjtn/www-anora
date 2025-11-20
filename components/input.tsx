@@ -11,14 +11,14 @@ const base = cn(
   "block",
   "border rounded",
   "px-2 py-1 text-sm",
-  // "focus:outline-offset-1",
   "focus:outline-2",
   "disabled:opacity-50",
   "invalid:outline-0",
+  // "focus:outline-offset-1",
   // "invalid:outline-offset-1",
+  // "invalid:focus:outline-offset-1",
   "invalid:outline-red-400",
   "invalid:focus:outline-red-400",
-  // "invalid:focus:outline-offset-1",
   "dark:border-white/25",
   "dark:focus:outline-neutral-600",
   "dark:focus:border-white/50",
@@ -26,13 +26,7 @@ const base = cn(
   "dark:placeholder:text-neutral-500",
 );
 
-const Input: FC<InputProps> = ({
-  title,
-  id,
-  className,
-  children,
-  ...props
-}) => {
+const Input: FC<InputProps> = ({ title, id, className, ...props }) => {
   const style = cn(base, className);
   const reactId = useId();
   const inputId = id ?? reactId;
