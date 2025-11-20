@@ -20,3 +20,13 @@ export type SupportedRatioType =
   | "3:2"
   | "4:3"
   | "16:9";
+
+export const ratios: Record<string, number> = {
+  "1:1": 1 / 1,
+  "2:1": 2 / 1,
+  "3:2": 3 / 2,
+  "4:3": 4 / 3,
+  "16:9": 16 / 9,
+};
+
+export const ratiosIds = Object.keys(ratios);
