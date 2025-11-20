@@ -4,6 +4,7 @@ export type IconName =
   | "settings"
   | "sensors"
   | "search"
+  | "rotate_90_degrees_cw"
   | "restart_alt"
   | "report"
   | "remove"
@@ -16,6 +17,7 @@ export type IconName =
   | "home"
   | "gif"
   | "footprint"
+  | "flip"
   | "favorite"
   | "exclamation"
   | "crop_19_6"
@@ -439,6 +441,35 @@ export const Icon: React.FC<IconProps> = ({
         {...props}
       >
         <path d="M440-122q-121-15-200.5-105.5T160-440q0-66 26-126.5T260-672l57 57q-38 34-57.5 79T240-440q0 88 56 155.5T440-202v80Zm80 0v-80q87-16 143.5-83T720-440q0-100-70-170t-170-70h-3l44 44-56 56-140-140 140-140 56 56-44 44h3q134 0 227 93t93 227q0 121-79.5 211.5T520-122Z" />
+      </svg>
+    ),
+
+    flip: (props) => (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        fill={color}
+        stroke="currentColor"
+        viewBox="0 -960 960 960"
+        className={className}
+        {...props}
+      >
+        <path d="M360-120H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h160v80H200v560h160v80Zm80 80v-880h80v880h-80Zm160-80v-80h80v80h-80Zm0-640v-80h80v80h-80Zm160 640v-80h80q0 33-23.5 56.5T760-120Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80q33 0 56.5 23.5T840-760h-80Z" />
+      </svg>
+    ),
+    rotate_90_degrees_cw: (props) => (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        fill={color}
+        stroke="currentColor"
+        viewBox="0 -960 960 960"
+        className={className}
+        {...props}
+      >
+        <path d="M440-80q-75 0-140.5-28.5t-114-77q-48.5-48.5-77-114T80-440q0-150 105-255t255-105h6l-62-62 56-58 160 160-160 160-56-58 62-62h-6q-117 0-198.5 81.5T160-440q0 117 81.5 198.5T440-160q35 0 69-8.5t65-25.5l58 58q-43 28-92 42T440-80Zm240-120L440-440l240-240 240 240-240 240Zm0-114 126-126-126-126-126 126 126 126Zm0-126Z" />
       </svg>
     ),
   };
