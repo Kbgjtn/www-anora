@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ObjectProvider } from "@/components/image/context";
+import { ToastProvider } from "@/components/toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +31,9 @@ export default function RootLayout({
           `${geistSans.variable} ${geistMono.variable} antialiased`,
         ].join(" ")}
       >
-        <ObjectProvider>{children}</ObjectProvider>
+        <ObjectProvider>
+          <ToastProvider>{children}</ToastProvider>
+        </ObjectProvider>
       </body>
     </html>
   );
