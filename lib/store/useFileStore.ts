@@ -1,10 +1,16 @@
+import { SupportedRatioType } from "@/components/shared";
 import { create } from "zustand";
-import { SupportedRatioType } from "../shared";
 
 export type FileEditState = {
   ratio: SupportedRatioType;
   scale: number;
   position: { x: number; y: number };
+  crop: { x: number; y: number; width?: number; height?: number };
+  rotation: number;
+  flip: {
+    horizontal: boolean;
+    vertical: boolean;
+  };
 };
 
 export type FileUploadState = {
@@ -26,9 +32,12 @@ const DEFAULT_UPLOAD_STATE = {
 } as FileUploadState;
 
 const DEFAULT_EDIT_STATE = {
-  ratio: "16:9",
+  ratio: "1:1",
   scale: 1,
   position: { x: 0, y: 0 },
+  crop: { x: 0, y: 0, width: 0.8, height: 0.8 },
+  flip: { horizontal: false, vertical: false },
+  rotation: 0,
 } as FileEditState;
 
 type FileStore = {
@@ -39,9 +48,10 @@ type FileStore = {
   reset: () => void;
   setSelected: (id: string) => void;
   removeFile: (id: string) => void;
-  // setUpload: (id: string, upload: Partial<FileUploadState>) => void;
-  updateEdit: (id: string, partial: Partial<FileEditState>) => void;
+  setEdit: (id: string, partial: Partial<FileEditState>) => void;
   resetEdit: (id: string) => void;
+  setOrderByIndex: (from: number, to: number) => void;
+  // setUpload: (id: string, upload: Partial<FileUploadState>) => void;
 };
 
 export const useFileStore = create<FileStore>((set) => ({
@@ -49,6 +59,13 @@ export const useFileStore = create<FileStore>((set) => ({
   order: [],
   selectedId: null,
 
+  setOrderByIndex: (from: number, to: number) =>
+    set((state) => {
+      const arr = [...state.order];
+      const [moved] = arr.splice(from, 1);
+      arr.splice(to, 0, moved);
+      return { order: arr };
+    }),
   resetEdit: (id: string) =>
     set((state) => ({
       files: {
@@ -115,7 +132,7 @@ export const useFileStore = create<FileStore>((set) => ({
   setSelected: (id: string) => set(() => ({ selectedId: id })),
   // setUpload: (id: string, upload: Partial<FileUploadState>) => {},
   // updateEdit: (id: string, partial: Partial<FileEditState>) => {},
-  updateEdit: (id: string, partial: Partial<FileEditState>) =>
+  setEdit: (id: string, partial: Partial<FileEditState>) =>
     set((state) => {
       const file = state.files[id];
       if (!file) return state;
