@@ -53,12 +53,13 @@ export function Button({
   variant = "primary",
   size = "md",
   className,
+  type = "button",
   ...props
 }: ButttonProps) {
   const style = cn(base, sizes[size], variants[variant], className);
 
   return (
-    <button className={style} {...props}>
+    <button type={type} className={style} {...props}>
       {props.children}
     </button>
   );
